@@ -2,15 +2,15 @@
 <Project>
   <ProjectOutputs>
     <ProjectOutput>
-      <FullPath>C:\Users\jzn\Documents\Courses\Kursutveckling\3D-Programmering 1\Uppgift 2\Project\x64\Debug\Assignment 2.exe</FullPath>
+      <FullPath>D:\Git\Rastaresering\Assignment2\x64\Debug\Assignment 2.exe</FullPath>
     </ProjectOutput>
   </ProjectOutputs>
   <ContentFiles>
     <ContentFile>
-      <FullPath>C:\Users\jzn\Documents\Courses\Kursutveckling\3D-Programmering 1\Uppgift 2\Project\x64\Debug\ParallaxOcclusionPS.cso</FullPath>
+      <FullPath>D:\Git\Rastaresering\Assignment2\x64\Debug\ParallaxOcclusionPS.cso</FullPath>
     </ContentFile>
     <ContentFile>
-      <FullPath>C:\Users\jzn\Documents\Courses\Kursutveckling\3D-Programmering 1\Uppgift 2\Project\x64\Debug\ParallaxOcclusionVS.cso</FullPath>
+      <FullPath>D:\Git\Rastaresering\Assignment2\x64\Debug\ParallaxOcclusionVS.cso</FullPath>
     </ContentFile>
   </ContentFiles>
   <SatelliteDlls />

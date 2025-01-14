@@ -31,5 +31,14 @@ struct OutputVS
 
 OutputVS main(InputVS input)
 {
+	OutputVS toOutput;
+	
+    toOutput.worldPos = mul(float4(input.position, 1), worldMatrix);
+    toOutput.svPos = mul(float4(toOutput.worldPos, 1) ,vp);
+    toOutput.textureCoords = input.textureCoords;
+    toOutput.normal = normalize(mul(float4(input.normal, 1), worldMatrix));
+    toOutput.tangent = mul(float4(input.tangent, 1), worldMatrix);
+    toOutput.bitangent = mul(float4(input.bitangent, 1), worldMatrix);
 
+	return toOutput;
 }

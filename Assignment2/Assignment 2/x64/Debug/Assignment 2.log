@@ -1,1 +1,7 @@
-﻿
+﻿D:\Git\Rastaresering\Assignment2\Assignment 2\ParallaxOcclusionPS.hlsl(39,9-80): warning X3206: implicit truncation of vector type
+D:\Git\Rastaresering\Assignment2\Assignment 2\ParallaxOcclusionPS.hlsl(40,9-80): warning X3206: implicit truncation of vector type
+D:\Git\Rastaresering\Assignment2\Assignment 2\ParallaxOcclusionPS.hlsl(41,12-85): warning X3206: implicit truncation of vector type
+D:\Git\Rastaresering\Assignment2\Assignment 2\ParallaxOcclusionPS.hlsl(42,12-81): warning X3206: implicit truncation of vector type
+  
+  compilation object save succeeded; see D:\Git\Rastaresering\Assignment2\x64\Debug\ParallaxOcclusionPS.cso
+  Assignment 2.vcxproj -> D:\Git\Rastaresering\Assignment2\x64\Debug\Assignment 2.exe
