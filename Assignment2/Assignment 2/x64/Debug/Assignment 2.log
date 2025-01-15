@@ -1,7 +1,9 @@
-﻿D:\Git\Rastaresering\Assignment2\Assignment 2\ParallaxOcclusionPS.hlsl(39,9-80): warning X3206: implicit truncation of vector type
-D:\Git\Rastaresering\Assignment2\Assignment 2\ParallaxOcclusionPS.hlsl(40,9-80): warning X3206: implicit truncation of vector type
-D:\Git\Rastaresering\Assignment2\Assignment 2\ParallaxOcclusionPS.hlsl(41,12-85): warning X3206: implicit truncation of vector type
-D:\Git\Rastaresering\Assignment2\Assignment 2\ParallaxOcclusionPS.hlsl(42,12-81): warning X3206: implicit truncation of vector type
+﻿D:\Git\Rastaresering\Assignment2\Assignment 2\ParallaxOcclusionPS.hlsl(56,32-41): warning X3081: comma expression used where a vector constructor may have been intended
+D:\Git\Rastaresering\Assignment2\Assignment 2\ParallaxOcclusionPS.hlsl(56,32-47): warning X3081: comma expression used where a vector constructor may have been intended
+D:\Git\Rastaresering\Assignment2\Assignment 2\ParallaxOcclusionPS.hlsl(57,35-44): warning X3081: comma expression used where a vector constructor may have been intended
+D:\Git\Rastaresering\Assignment2\Assignment 2\ParallaxOcclusionPS.hlsl(57,35-50): warning X3081: comma expression used where a vector constructor may have been intended
+D:\Git\Rastaresering\Assignment2\Assignment 2\ParallaxOcclusionPS.hlsl(59,22-39): warning X3203: signed/unsigned mismatch, unsigned assumed
+D:\Git\Rastaresering\Assignment2\Assignment 2\ParallaxOcclusionPS.hlsl(65,16-105): warning X3206: implicit truncation of vector type
+D:\Git\Rastaresering\Assignment2\Assignment 2\ParallaxOcclusionPS.hlsl(67,13-40): error X3019: if statement conditional expressions must evaluate to a scalar
   
-  compilation object save succeeded; see D:\Git\Rastaresering\Assignment2\x64\Debug\ParallaxOcclusionPS.cso
-  Assignment 2.vcxproj -> D:\Git\Rastaresering\Assignment2\x64\Debug\Assignment 2.exe
+  compilation failed; no code produced

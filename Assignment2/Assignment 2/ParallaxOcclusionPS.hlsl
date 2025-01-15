@@ -36,17 +36,64 @@ sampler textureSampler : register(s0);
 
 float4 main(InputPS input) : SV_TARGET
 {	
-	float3 ambientMapValue = ambientMap.Sample(textureSampler, input.textureCoords);
-	float3 diffuseMapValue = diffuseMap.Sample(textureSampler, input.textureCoords);
-    float3 specularMapValue = specularMap.Sample(textureSampler, input.textureCoords);
-    float3 normalMapValue = normalMap.Sample(textureSampler, input.textureCoords);
-    float3 normal = normalize(normalMapValue * 2 - 1);
-	
-	
     float3 viewingVec = normalize(cameraPosition - input.worldPos);
     float3x3 worldToTangent = float3x3(input.bitangent, input.tangent, input.normal);
 	
     float3 viewTangent = normalize(mul(viewingVec, transpose(worldToTangent)));
+    
+    
+    float HEIGHT_SCALE = 0.1f;
+    
+    float3 lengthFactor = dot(viewTangent, float3(0.0f, 0.0f, 1.0f));
+
+    
+    float3x3 inverseWorldToTangent = transpose(worldToTangent);
+    float3 sampleRay = (mul(-viewingVec, inverseWorldToTangent) / lengthFactor) * HEIGHT_SCALE;
+    
+    int maxSampleCount = 32;
+    float3 stepRate = sampleRay / maxSampleCount;
+    
+    float3 lastDisplacement = (0.0f, 0.0f, 0.0f);
+    float3 currentDisplacement = (0.0f, 0.0f, 0.0f);
+    
+    for (uint j = 0; j < maxSampleCount; ++j)
+    {
+        float3 currentDisplacement = stepRate * j;
+        float3 currentDepth = -currentDisplacement.z;
+        float2 currentTextureCoords = input.textureCoords + currentDisplacement.xy;
+        
+        float3 sampledDepth = displacementMap.Sample(textureSampler, currentTextureCoords) * HEIGHT_SCALE;
+        
+        if (currentDepth >= sampledDepth)
+        {
+            break;
+        }
+        
+        float3 lastDisplacement = currentDisplacement;
+    }
+    
+    float2 beforeCoords = input.textureCoords + lastDisplacement.xy;
+    float2 afterCoords = input.textureCoords + currentDisplacement.xy;
+    float3 beforeDepth = displacementMap.Sample(textureSampler, beforeCoords) * HEIGHT_SCALE;
+    float3 afterDepth = displacementMap.Sample(textureSampler, afterCoords) * HEIGHT_SCALE;
+    
+    float3 beforeDiff = -lastDisplacement.z - beforeDepth;
+    float3 afterDiff = afterDepth - -currentDisplacement.z;
+    float3 totalDiff = beforeDiff + afterDiff;
+    
+    float2 weight = clamp(beforeDiff / totalDiff, 0, 1);
+    
+    float2 weightCoord = (beforeCoords * weight) + (afterCoords * (1 - weight));
+    
+    
+	float3 ambientMapValue = ambientMap.Sample(textureSampler, weightCoord);
+    float3 diffuseMapValue = diffuseMap.Sample(textureSampler, weightCoord);
+    float3 specularMapValue = specularMap.Sample(textureSampler, weightCoord);
+    float3 normalMapValue = normalMap.Sample(textureSampler, weightCoord);
+    float3 normal = normalize(normalMapValue * 2 - 1);
+	
+	
+   
 	
     normal = normalize(mul(normal, transpose(worldToTangent)));
 	
@@ -77,5 +124,8 @@ float4 main(InputPS input) : SV_TARGET
     specularValue *= specularMapValue;
    	
     float3 outColor = float3(ambientValue + diffuseValue + specularValue);
-    return float4(outColor, 1.0f);
+    
+    
+    
+        return float4(outColor, 1.0f);
 }
