@@ -2,15 +2,15 @@
 <Project>
   <ProjectOutputs>
     <ProjectOutput>
-      <FullPath>D:\Git\Rastaresering\Assignment2\x64\Debug\Assignment 2.exe</FullPath>
+      <FullPath>E:\Git\Rastaresering\Assignment2\x64\Debug\Assignment 2.exe</FullPath>
     </ProjectOutput>
   </ProjectOutputs>
   <ContentFiles>
     <ContentFile>
-      <FullPath>D:\Git\Rastaresering\Assignment2\x64\Debug\ParallaxOcclusionPS.cso</FullPath>
+      <FullPath>E:\Git\Rastaresering\Assignment2\x64\Debug\ParallaxOcclusionPS.cso</FullPath>
     </ContentFile>
     <ContentFile>
-      <FullPath>D:\Git\Rastaresering\Assignment2\x64\Debug\ParallaxOcclusionVS.cso</FullPath>
+      <FullPath>E:\Git\Rastaresering\Assignment2\x64\Debug\ParallaxOcclusionVS.cso</FullPath>
     </ContentFile>
   </ContentFiles>
   <SatelliteDlls />
