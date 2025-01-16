@@ -4,6 +4,14 @@ D:\Git\Rastaresering\Assignment2\Assignment 2\ParallaxOcclusionPS.hlsl(57,35-44)
 D:\Git\Rastaresering\Assignment2\Assignment 2\ParallaxOcclusionPS.hlsl(57,35-50): warning X3081: comma expression used where a vector constructor may have been intended
 D:\Git\Rastaresering\Assignment2\Assignment 2\ParallaxOcclusionPS.hlsl(59,22-39): warning X3203: signed/unsigned mismatch, unsigned assumed
 D:\Git\Rastaresering\Assignment2\Assignment 2\ParallaxOcclusionPS.hlsl(65,16-105): warning X3206: implicit truncation of vector type
-D:\Git\Rastaresering\Assignment2\Assignment 2\ParallaxOcclusionPS.hlsl(67,13-40): error X3019: if statement conditional expressions must evaluate to a scalar
+D:\Git\Rastaresering\Assignment2\Assignment 2\ParallaxOcclusionPS.hlsl(77,12-92): warning X3206: implicit truncation of vector type
+D:\Git\Rastaresering\Assignment2\Assignment 2\ParallaxOcclusionPS.hlsl(78,12-90): warning X3206: implicit truncation of vector type
+D:\Git\Rastaresering\Assignment2\Assignment 2\ParallaxOcclusionPS.hlsl(84,12-55): warning X3206: implicit truncation of vector type
+D:\Git\Rastaresering\Assignment2\Assignment 2\ParallaxOcclusionPS.hlsl(89,9-72): warning X3206: implicit truncation of vector type
+D:\Git\Rastaresering\Assignment2\Assignment 2\ParallaxOcclusionPS.hlsl(90,12-75): warning X3206: implicit truncation of vector type
+D:\Git\Rastaresering\Assignment2\Assignment 2\ParallaxOcclusionPS.hlsl(91,12-77): warning X3206: implicit truncation of vector type
+D:\Git\Rastaresering\Assignment2\Assignment 2\ParallaxOcclusionPS.hlsl(92,12-73): warning X3206: implicit truncation of vector type
+D:\Git\Rastaresering\Assignment2\Assignment 2\ParallaxOcclusionPS.hlsl(65,31-90): warning X3570: gradient instruction used in a loop with varying iteration, attempting to unroll the loop
   
-  compilation failed; no code produced
+  compilation object save succeeded; see D:\Git\Rastaresering\Assignment2\x64\Debug\ParallaxOcclusionPS.cso
+  Assignment 2.vcxproj -> D:\Git\Rastaresering\Assignment2\x64\Debug\Assignment 2.exe

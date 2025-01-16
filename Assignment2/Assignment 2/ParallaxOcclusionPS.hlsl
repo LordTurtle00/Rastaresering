@@ -56,15 +56,15 @@ float4 main(InputPS input) : SV_TARGET
     float3 lastDisplacement = (0.0f, 0.0f, 0.0f);
     float3 currentDisplacement = (0.0f, 0.0f, 0.0f);
     
-    for (uint j = 0; j < maxSampleCount; ++j)
+    for (uint j = 0; j < maxSampleCount; j++)
     {
         float3 currentDisplacement = stepRate * j;
-        float3 currentDepth = -currentDisplacement.z;
+        float currentDepth = -currentDisplacement.z;
         float2 currentTextureCoords = input.textureCoords + currentDisplacement.xy;
         
         float3 sampledDepth = displacementMap.Sample(textureSampler, currentTextureCoords) * HEIGHT_SCALE;
         
-        if (currentDepth >= sampledDepth)
+        if (currentDepth >= sampledDepth.z)
         {
             break;
         }
@@ -91,10 +91,7 @@ float4 main(InputPS input) : SV_TARGET
     float3 specularMapValue = specularMap.Sample(textureSampler, weightCoord);
     float3 normalMapValue = normalMap.Sample(textureSampler, weightCoord);
     float3 normal = normalize(normalMapValue * 2 - 1);
-	
-	
-   
-	
+		
     normal = normalize(mul(normal, transpose(worldToTangent)));
 	
     float3 ambientValue = ambientMapValue;
@@ -106,7 +103,7 @@ float4 main(InputPS input) : SV_TARGET
     lights.GetDimensions(nrOfLights, stride);
 	
 	
-    for (uint i = 0; i < nrOfLights; ++i)
+    for (uint i = 0; i < nrOfLights; i++)
     {
         SpotlightData light = lights[i];
 		
@@ -124,8 +121,6 @@ float4 main(InputPS input) : SV_TARGET
     specularValue *= specularMapValue;
    	
     float3 outColor = float3(ambientValue + diffuseValue + specularValue);
-    
-    
-    
-        return float4(outColor, 1.0f);
+        
+    return float4(outColor, 1.0f);
 }
