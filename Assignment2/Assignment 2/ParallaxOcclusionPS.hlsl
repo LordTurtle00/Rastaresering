@@ -38,35 +38,25 @@ float4 main(InputPS input) : SV_TARGET
 {	
     float3 viewingVec = normalize(cameraPosition - input.worldPos);
     
-    float3x3 worldToTangent = float3x3(input.bitangent, input.tangent, input.normal);
-    float3 viewTangent = normalize(mul(viewingVec, transpose(worldToTangent)));
-    
-    
+    float3x3 worldToTangent = float3x3(input.tangent, input.bitangent, input.normal);
+    float3x3 inverseWorldToTangent = transpose(worldToTangent);
+    float3 viewTangent = normalize(mul(viewingVec, inverseWorldToTangent));
+          
     float heightScale = 0.1f;
     
     float3 lengthFactor = dot(float3(0.0f, 0.0f, 1.0f), viewTangent);
-    //const float minLayer = 16.0f;
-    //const float maxLayer = 32.0f;
-    //const float numLayer = lerp(maxLayer, minLayer, max(dot(float3(0.0, 0.0, 1.0f), viewTangent), 0.0f));
-    
-    float3x3 inverseWorldToTangent = transpose(worldToTangent);
+     
     float3 sampleRay = (mul(-viewingVec, inverseWorldToTangent) / lengthFactor) * heightScale;
-    //float layerDepth = 1.0f / numLayer;
-    //float currentDepth = 0.0f;
-    //float2 currentTextCoords = input.textureCoords;
     
     int maxSampleCount = 32;
     float3 stepRate = sampleRay / maxSampleCount;
-    //float2 textureOffset = ((viewTangent.xy / viewTangent.z) * heightScale) / numLayer;
-    
-    //float currentDepthMapValue = displacementMap.Sample(textureSampler, currentTextCoords).r;
     
     float3 lastDisplacement = (0.0f, 0.0f, 0.0f);
     float3 currentDisplacement = (0.0f, 0.0f, 0.0f);
     
     for (uint j = 0; j < maxSampleCount; j++)
     {
-        float3 currentDisplacement = stepRate * j;
+        currentDisplacement = stepRate * j;
         float currentDepth = -currentDisplacement.z;
         float2 currentTextureCoords = input.textureCoords + currentDisplacement.xy;
         
@@ -77,7 +67,7 @@ float4 main(InputPS input) : SV_TARGET
             break;
         }
         
-        float3 lastDisplacement = currentDisplacement;
+        lastDisplacement = currentDisplacement;
     }
     
     float2 beforeCoords = input.textureCoords + lastDisplacement.xy;
@@ -94,7 +84,7 @@ float4 main(InputPS input) : SV_TARGET
     float2 weightCoord = (beforeCoords * weight) + (afterCoords * (1 - weight));
     
     
-	float3 ambientMapValue = ambientMap.Sample(textureSampler, weightCoord);
+    float3 ambientMapValue = ambientMap.Sample(textureSampler, weightCoord);
     float3 diffuseMapValue = diffuseMap.Sample(textureSampler, weightCoord);
     float3 specularMapValue = specularMap.Sample(textureSampler, weightCoord);
     float3 normalMapValue = normalMap.Sample(textureSampler, weightCoord);
