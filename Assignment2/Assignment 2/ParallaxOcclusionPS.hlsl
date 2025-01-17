@@ -38,15 +38,15 @@ float4 main(InputPS input) : SV_TARGET
 {	
     float3 viewingVec = normalize(cameraPosition - input.worldPos);
     
-    float3x3 worldToTangent = float3x3(input.tangent, input.bitangent, input.normal);
-    float3x3 inverseWorldToTangent = transpose(worldToTangent);
-    float3 viewTangent = normalize(mul(viewingVec, inverseWorldToTangent));
+    float3x3 tangentToWorld = float3x3(input.tangent, input.bitangent, input.normal);
+    float3x3 inverseTangentToWorld = transpose(tangentToWorld);
+    float3 viewTangent = normalize(mul(viewingVec, inverseTangentToWorld));
           
     float heightScale = 0.1f;
     
     float3 lengthFactor = dot(float3(0.0f, 0.0f, 1.0f), viewTangent);
      
-    float3 sampleRay = (mul(-viewingVec, inverseWorldToTangent) / lengthFactor) * heightScale;
+    float3 sampleRay = (mul(-viewingVec, inverseTangentToWorld) / lengthFactor) * heightScale;
     
     int maxSampleCount = 32;
     float3 stepRate = sampleRay / maxSampleCount;
@@ -90,7 +90,7 @@ float4 main(InputPS input) : SV_TARGET
     float3 normalMapValue = normalMap.Sample(textureSampler, weightCoord);
     float3 normal = normalize(normalMapValue * 2 - 1);
 		
-    normal = normalize(mul(normal, transpose(worldToTangent)));
+    normal = normalize(mul(normal, transpose(tangentToWorld)));
 	
     float3 ambientValue = ambientMapValue;
     float3 diffuseValue = float3(0.0f, 0.0f, 0.0f);
